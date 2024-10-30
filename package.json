@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node ./index.js",
-        "start:dev": "nodemon ./index.js",
+        "start:dev": "npx tsx watch index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Sergei Denisenko",
@@ -15,10 +15,10 @@
     "devDependencies": {
         "nodemon": "^2.0.16",
         "dotenv": "^16.4.5",
-        "ws": "^8.18.0"
+        "ws": "^8.18.0",
+        "tsx": "^4.19.1"
     },
     "dependencies": {
-        "ws": "^8.8.0",
         "@types/node": "^22.7.7",
         "@types/ws": "^8.5.12",
         "@typescript-eslint/eslint-plugin": "^8.10.0",
