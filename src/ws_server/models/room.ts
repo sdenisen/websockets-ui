@@ -32,6 +32,6 @@ export function update_room() {
       if (room.roomUsers.length < 2)
         exportRooms.push(room)
     });
-    let response: types.reqOutputInt = new types.Reponse('update_room', JSON.stringify(exportRooms));
+    let response: types.reqOutputInt = new types.Response('update_room', JSON.stringify(exportRooms));
     wsServer.broadcast(JSON.stringify(response))
 }

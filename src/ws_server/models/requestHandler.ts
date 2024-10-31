@@ -10,7 +10,7 @@ import { placeAIShips, prepareTheMachine } from './bot';
 export const requestHandler = (req: types.reqInputInt, socket: WebSocket) => {
     let data = (req.data) ? JSON.parse(req.data) : '';
     let responseData;
-    //console.log(req)
+
     switch (req.type) {
         case 'reg':
             if (validatePassword(data.name, data.password)) {
@@ -21,7 +21,7 @@ export const requestHandler = (req: types.reqInputInt, socket: WebSocket) => {
             else {
                 responseData = new types.RegOutputData(data.name, 0, "Wrong Password");
             }
-            let response: types.reqOutputInt = new types.Reponse('reg', JSON.stringify(responseData));
+            let response: types.reqOutputInt = new types.Response('reg', JSON.stringify(responseData));
 
             socket.send(JSON.stringify(response))
             updateWinners()

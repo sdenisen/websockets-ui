@@ -15,7 +15,7 @@ export interface coordinate {
     y: number,
 }
 
-export class Reponse implements reqOutputInt {
+export class Response implements reqOutputInt {
     type: string;
     data: string;
     id: number;

@@ -63,7 +63,7 @@ export function updateWinners() {
         let scoreEntry = {'name': user.name, 'wins': user.wins};
         scoreTable.push(scoreEntry)
     });
-    let response: types.reqOutputInt = new types.Reponse('update_winners', JSON.stringify(scoreTable.sort((a, b) => b.wins - a.wins)));
+    let response: types.reqOutputInt = new types.Response('update_winners', JSON.stringify(scoreTable.sort((a, b) => b.wins - a.wins)));
     wsServer.broadcast(JSON.stringify(response))
 }
 

@@ -190,7 +190,7 @@ export function startGame(sessions: Game[]) {
         const socketPlayer = activeSockets.get(session.idPlayer);
         if (socketPlayer != undefined) {
             const currentGame = { ships: session.ships, currentPlayerIndex: session.idPlayer };
-            let response: types.reqOutputInt = new types.Reponse('start_game', JSON.stringify(currentGame));
+            let response: types.reqOutputInt = new types.Response('start_game', JSON.stringify(currentGame));
             socketPlayer.send(JSON.stringify(response))
         }
     })
@@ -204,7 +204,7 @@ export function create_game(roomId: number): number {
         const currentGame = new Game(gameIndex, player.index, roomId);
         gameHistory.push(currentGame);
         if (socket != undefined) {
-            let response: types.reqOutputInt = new types.Reponse('create_game', JSON.stringify(currentGame));
+            let response: types.reqOutputInt = new types.Response('create_game', JSON.stringify(currentGame));
             socket.send(JSON.stringify(response))
         }
     });
@@ -218,7 +218,7 @@ export function updateTurn(gameID: number | string) {
             const socket = activeSockets.get(player.index)
             if (socket != undefined) {
                 const currentTurn = { currentPlayer: currentGame.players[currentGame.turn] }
-                let response: types.reqOutputInt = new types.Reponse('turn', JSON.stringify(currentTurn));
+                let response: types.reqOutputInt = new types.Response('turn', JSON.stringify(currentTurn));
                 socket.send(JSON.stringify(response))
             }
         });
@@ -233,7 +233,7 @@ export function attackFeedback(attackFeedback: attackReport, gameID: number | st
         rooms[currentGame.roomID].roomUsers.forEach(player => {
             const socket = activeSockets.get(player.index)
             if (socket != undefined) {
-                let response: types.reqOutputInt = new types.Reponse('attack', JSON.stringify(attackFeedback));
+                let response: types.reqOutputInt = new types.Response('attack', JSON.stringify(attackFeedback));
                 socket.send(JSON.stringify(response))
             }
         });
@@ -280,7 +280,7 @@ export function finish(winnerId: number | string, currentGame: RunningGame) {
         const socket = activeSockets.get(player.index)
         if (socket != undefined) {
             const winner = { winPlayer: winnerId }
-            let response: types.reqOutputInt = new types.Reponse('finish', JSON.stringify(winner));
+            let response: types.reqOutputInt = new types.Response('finish', JSON.stringify(winner));
             socket.send(JSON.stringify(response))
         }
     });
